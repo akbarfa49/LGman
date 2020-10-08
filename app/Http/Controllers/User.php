@@ -21,6 +21,17 @@ class User extends Controller
     return view('users.dashboard');
  }
 
+ public function view_logout(Request $request){
+    $request->session()->flush();
+    return redirect('/login');
+}
+public function view_game(Request $request){
+    if(!$request->session()->has('username')){
+        $request->session()->flush();
+        return redirect('/login');
+    }
+    return view('users.game');
+}
 
 
 
@@ -35,6 +46,31 @@ class User extends Controller
 
 
 
+public function api_getGameByid(Request $request, $id){
+    if(!$request->session()->has('username')){
+        $request->session()->flush();
+        return redirect('/login');
+    }
+    $publisher = new Publisher();
+    $result = $publisher->getGameByid($id);
+    $data = [];
+    
+    if (count($result)<1){
+        return abort(404);
+    }
+    $data['game']=$result[0]->Name;
+    $data['desc']=$result[0]->Game_Desc;
+    $data['publisher']=$result[0]->Publisher_Name;
+    $data['genre']=$result[0]->Genre;
+    $data['site']=$result[0]->Site??'-';
+    $data['game_id']=$result[0]->Game_id;
+
+    return response()->json([
+        'data' => $data,
+        'status' => 'OK',
+      ]);
+}
+ 
  public function api_login(Request $request)
  {
     $validator = Validator::make($request->All(),[
@@ -75,8 +111,21 @@ class User extends Controller
         }
         $publisher = new Publisher();
         $result = $publisher->getGame($request->session()->get('id'));
+        $data = [
+        ];
+        
+        $arr_data = array();
+        for($i=0;$i< count($result);$i++){
+        $data['game']=$result[$i]->Name;
+        $data['genre']=$result[$i]->Genre;
+        $data['site']=$result[$i]->Site??'-';
+        $data['game']=$result[$i]->Game_id;
+        array_push($arr_data, $data);
+        }
+
+
         return response()->json([
-            'message' => $result,
+            'data' => $arr_data,
             'status' => 'OK',
           ]);
     }
@@ -129,10 +178,10 @@ class User extends Controller
                 return redirect('/login');
             }
             $data = [
-                'Publisher_Id' => ['Required','Integer']
+                'id' => ['Required','Integer']
             ];
-            $data['Publisher_Id'] = $id;
-            if (!isset($data['Publisher_Id'])){
+            $data['id'] = $id;
+            if (!isset($data['id'])){
                 return response()->json([
                     'message' => 'wrong input',
                     'status' => 'OK',
@@ -152,5 +201,41 @@ class User extends Controller
                 ]);
 
         }
+
+        //update
+
+
+
+
+        public function api_update(Request $request){
+            if(!$request->session()->has('username')){
+                $request->session()->flush();
+                return redirect('/login');
+            }
+            $validator = Validator::make($request->All(),[
+                'name'=>['required', 'string'],
+                'desc'=>['string'],
+                'genre'=>['string'],
+                'site'=>['url'],
+                'id'=>['id'],
+    
+            ]);
+            if($validator->fails()){
+                return response()->json([
+                'message' =>'check again the form',
+                'status' => 'OK',
+            ]);};
+            $publisher = new Publisher();
+            $publisher->game['name']=$request->input('name');
+        $publisher->game['desc']=$request->input('desc');
+        $publisher->game['genre']=$request->input('genre');
+        $publisher->game['site']=$request->input('site');
+          $result =  $publisher->updateGame($request->input('id'));
+          return response()->json([
+            'message' => $result,
+            'status' => 'OK', ]);
+        }
 }
+
+
 ?>

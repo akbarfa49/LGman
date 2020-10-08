@@ -27,4 +27,12 @@ Route::get('/admin/logout', [Admin::class, 'view_logout']);
 //Route::post('/user/forgot', 'UserAct@forgot');
 Route::get('/login', [User::class, 'view_login']);
 Route::get('/dashboard', [User::class, 'view_dashboard']);
+Route::get('/preview/{id}', [User::class, 'view_game']);
+Route::get('/logout', [User::class, 'view_logout']);
+
+Route::get('/edit/{id}', [User::class, 'view_edit']);
+
+
+//free view
+//Route::get('/view/{id}', [User::class, 'view_game']);
 

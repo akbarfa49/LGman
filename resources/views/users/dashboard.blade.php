@@ -168,9 +168,8 @@
                                                 <th>Genre</th>
                                                 <th>Website URL</th>
                                                 <th>View</th>
-                                                <th>Action</th>
                                             </tr>
-                                        </thead>>
+                                        </thead>
                                         <tbody id="tableBody">
                                            
                                         </tbody>
@@ -234,6 +233,7 @@
     </div>
   </div>
 </div>
+
         <script src="/js/jquery.js" crossorigin="anonymous"></script>
         <script src="/js/bootstrap.js" crossorigin="anonymous"></script>
         <script src="/js/user/dashboard.js"></script>

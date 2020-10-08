@@ -22,8 +22,16 @@ class Publisher{
     return $result;
    }
    public function delete($id){
-      $status = DB::delete('delete FROM game_info where Publisher_Id = ?)', [$id]);
+      $status = DB::delete('delete FROM game_info where Game_id  = ?)', [$id]);
       return $status;
+  }
+  public function getGameByid($id){
+     $result = DB::select('select p.Publisher_Name, g.Name, g.Game_id, g.Genre, g.Game_Desc, g.Site  from game_info as g join profile as p on p.Publisher_id = g.Publisher_id where g.Game_id = ?', [$id]);
+     return $result;
+  }
+  public function updateGame($id){
+     $result = DB::update('update users set Name = ?, Genre = ?, Game_id = ?, Game_Desc =?, Game_Site where Game_id = ?', [$this->game['name'],  $this->game['genre'],$this->game['desc'], $this->game['site'], $id ]);
+     return $result;
   }
 }
 

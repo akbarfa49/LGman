@@ -25,12 +25,11 @@ $(document).ready(()=>{
             publisher = data.data;
             if (publisher.length != 0 ){
             for(i=0;i<publisher.length;i++){
-            $("#tableBody").append('<tr>'+
-            '<td>'+publisher[i].publisher+'</td>'+
-           '<td>'+publisher[i].address+'</td>'+
-            '<td>'+publisher[i].website+'</td>'+
-            '<td>'+publisher[i].email+'</td>'+
-            '<td><a href="/api/admin/delete/'+publisher[i].id+'">delete </a></td>'+
+            $("#tableBody").append('<tr id="'+i+'">'+
+            '<td>'+publisher[i].game+'</td>'+
+           '<td>'+publisher[i].genre+'</td>'+
+            '<td>'+publisher[i].site+'</td>'+
+            '<td><a href="/preview/'+publisher[i].game+'">preview </a></td>'+
             +'</tr>');
 
             }
@@ -47,7 +46,7 @@ $("#create").click((e) => {
             "site": $("#addsite").val()
         };
         if (jsonData["name"] == ""){
-            alert("Email or Password or Username must be filled out");
+            alert("name must be filled out");
             return
         }
         $.ajax({
