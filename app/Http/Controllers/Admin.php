@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Log;
 class Admin extends Controller
 {
 
-
+//make admin account directly from mysql or phpmyadmin with password column using md5 encrypt
+    
+    
 //view AREA
 
     public function view_login(){
