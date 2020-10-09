@@ -29,7 +29,7 @@ $(document).ready(()=>{
             '<td>'+publisher[i].game+'</td>'+
            '<td>'+publisher[i].genre+'</td>'+
             '<td>'+publisher[i].site+'</td>'+
-            '<td><a href="/preview/'+publisher[i].game+'">preview </a></td>'+
+            '<td><a href="/preview/'+publisher[i].id+'">preview </a></td>'+
             +'</tr>');
 
             }

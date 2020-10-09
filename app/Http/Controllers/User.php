@@ -119,7 +119,7 @@ public function api_getGameByid(Request $request, $id){
         $data['game']=$result[$i]->Name;
         $data['genre']=$result[$i]->Genre;
         $data['site']=$result[$i]->Site??'-';
-        $data['game']=$result[$i]->Game_id;
+        $data['id']=$result[$i]->Game_id;
         array_push($arr_data, $data);
         }
 
@@ -217,7 +217,7 @@ public function api_getGameByid(Request $request, $id){
                 'desc'=>['string'],
                 'genre'=>['string'],
                 'site'=>['url'],
-                'id'=>['id'],
+                'id'=>['integer'],
     
             ]);
             if($validator->fails()){
@@ -231,8 +231,14 @@ public function api_getGameByid(Request $request, $id){
         $publisher->game['genre']=$request->input('genre');
         $publisher->game['site']=$request->input('site');
           $result =  $publisher->updateGame($request->input('id'));
+          if ($result<1){
+            return response()->json([
+                'message' =>'check again the form',
+                'status' => 'OK',
+            ]);
+          }
           return response()->json([
-            'message' => $result,
+            'message' => 'OK',
             'status' => 'OK', ]);
         }
 }

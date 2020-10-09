@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="row">
-        <a href="#" id="edit" class="btn btn-primary col mx-1">Edit  Game Info</a>
+        <button id="edit" class="btn btn-primary col mx-1"  data-toggle="modal" data-target="#exampleModal">Edit  Game Info</button>
         <a href="#" id="delete" class="btn btn-danger col mx-1">Delete Game</a>
         
         </div>
@@ -42,7 +42,45 @@
   </div>
 </body>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+      <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Game Name:</label>
+            <input type="text" class="form-control" id="addgame">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Game Desc:</label>
+            <textarea type="text" class="form-control" id="adddesc"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Genre:</label>
+            <input type="text" class="form-control" id="addgenre"></textarea>
+          </div>
+      
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Site:</label>
+            <input type="text" class="form-control" id="addsite"></textarea>
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="save">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.js" crossorigin="anonymous"></script>
 <script src="/js/user/gameview.js"></script>
 </body>
 </html>

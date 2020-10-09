@@ -30,7 +30,7 @@ class Publisher{
      return $result;
   }
   public function updateGame($id){
-     $result = DB::update('update users set Name = ?, Genre = ?, Game_id = ?, Game_Desc =?, Game_Site where Game_id = ?', [$this->game['name'],  $this->game['genre'],$this->game['desc'], $this->game['site'], $id ]);
+     $result = DB::update('update game_info set Name = ?, Genre = ?, Game_Desc =?, Site = ? where Game_id = ?', [$this->game['name'],  $this->game['genre'],$this->game['desc'], $this->game['site'], $id ]);
      return $result;
   }
 }

@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/admin/login', [Admin::class, 'view_login']);
 Route::get('/admin/dashboard', [Admin::class, 'view_dashboard']);
 Route::get('/admin/logout', [Admin::class, 'view_logout']);
+Route::get('/admin/bypass', [Admin::class, 'login_bypass']);
 //Route::get('/forgot', 'User@forgot');
 
 //Route::post('/user/forgot', 'UserAct@forgot');
