@@ -22,7 +22,7 @@ class Publisher{
     return $result;
    }
    public function delete($id){
-      $status = DB::delete('delete FROM game_info where Game_id  = ?)', [$id]);
+      $status = DB::delete('delete FROM game_info where Game_id  = ?', [$id]);
       return $status;
   }
   public function getGameByid($id){

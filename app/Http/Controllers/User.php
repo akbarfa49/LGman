@@ -188,7 +188,7 @@ public function api_getGameByid(Request $request, $id){
                 ]);
             }
             $publisher = new Publisher();
-        $status = $account->delete($data['Publisher_Id']);
+        $status = $publisher->delete($data['id']);
         if ($status <1){
             return response()->json([
                 'message' => 'data doesnt exists',
