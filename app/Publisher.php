@@ -11,7 +11,7 @@ class Publisher{
    public function addGame($id){
       $table = DB::select('select Name from game_info where Name = ?', [$this->game['name']]);
        if(count($table)<1){
-         $result=DB::insert('insert into game_info values (?, ?, ?, ?, ?, ?, ?)', [$id, $this->game['name'],  $this->game['genre'],$this->game['desc'], $this->game['site'],date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
+         $result=DB::insert('insert into game_info values (?, ?, ?, ?, ?, ?, ?, ?)', [$id, null, $this->game['name'],  $this->game['genre'],$this->game['desc'], $this->game['site'],date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
     return $result;
    };
    
