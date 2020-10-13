@@ -38,23 +38,33 @@ $(document).ready(()=>{
     })
 })
 $("#create").click((e) => {
+    reg= /^(https:\/\/www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
+    
     e.preventDefault();
          jsonData = {
             "name": $("#addgame").val(),
             "desc": $("#adddesc").val(),
             "genre": $("#addgenre").val(),
-            "site": $("#addsite").val()
+            "site": $("#addSite").val()
         };
         if (jsonData["name"] == ""){
             alert("name must be filled out");
             return
+        }else if(jsonData["site"]!=""){
+            if(reg.test($("#addSite").val())==false){
+                alert("wrong format");
+                return
+            }
         }
         $.ajax({
             url: '/api/create',
             type: 'post',
             data: jsonData,
             success: (data) => {
-                alert(data.message);
+                if(data.status=='OK'){
+                    location.reload()
+                }
+                alert(data.message)
             }
         });
 
