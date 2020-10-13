@@ -17,8 +17,8 @@ class CreateGameInfoTable extends Migration
             $table->unsignedInteger('Publisher_id');
             $table->foreign('Publisher_id')->references('Publisher_id')->on('profile')->onUpdate('cascade')->onDelete('cascade');
             $table->increments('Game_id');
-            $table->string('Name',15)->unique();
-            $table->string('Genre', 10)->nullable();
+            $table->string('Name',255)->unique();
+            $table->string('Genre', 255)->nullable();
             $table->text('Game_Desc')->nullable();
             $table->string('Site')->nullable();
             $table->timestamps();
