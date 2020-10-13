@@ -35,7 +35,7 @@
       </div>
       <div class="row">
         <button id="edit" class="btn btn-primary col mx-1"  data-toggle="modal" data-target="#exampleModal">Edit  Game Info</button>
-        <a href="#" id="delete" class="btn btn-danger col mx-1">Delete Game</a>
+        <button id="delete" class="btn btn-danger col mx-1">Delete Game</button>
         
         </div>
     </div>
