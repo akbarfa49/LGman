@@ -35,7 +35,7 @@ Route::get('getGame', [User::class, 'api_getGame']);
 Route::post('create', [User::class, 'api_createGame']);
 Route::get('getGame/{id}',[User::class, 'api_getGameByid']);
 Route::put('update', [User::class, 'api_update']);
-Route::get('delete/{id}', [User::class, 'api_delete']);
+Route::delete('delete', [User::class, 'api_delete']);
 
 
 

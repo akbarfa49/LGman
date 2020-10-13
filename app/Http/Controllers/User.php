@@ -125,6 +125,7 @@ public function api_getGameByid(Request $request, $id){
 
 
         return response()->json([
+            'username'=> $request->session()->get('username'),
             'data' => $arr_data,
             'status' => 'OK',
           ]);
@@ -157,7 +158,7 @@ public function api_getGameByid(Request $request, $id){
         if ($result != true){
         
             return response()->json([
-                'message' => $result,
+                'message' => 'game exists',
                 'status' => 'OK',
             ]);
         }
@@ -172,7 +173,7 @@ public function api_getGameByid(Request $request, $id){
 
 
 
-        public function api_delete(Request $request, $id){
+        public function api_delete(Request $request){
             if(!$request->session()->has('username')){
                 $request->session()->flush();
                 return redirect('/login');
@@ -180,19 +181,19 @@ public function api_getGameByid(Request $request, $id){
             $data = [
                 'id' => ['Required','Integer']
             ];
-            $data['id'] = $id;
+            $data['id'] = $request->input('id');
             if (!isset($data['id'])){
                 return response()->json([
                     'message' => 'wrong input',
-                    'status' => 'OK',
+                    'status' => 'fail',
                 ]);
             }
             $publisher = new Publisher();
-        $status = $publisher->delete($data['id']);
+        $status = $publisher->delete($data['id'],$request->session()->get('id'));
         if ($status <1){
             return response()->json([
                 'message' => 'data doesnt exists',
-                'status' => 'OK',
+                'status' => 'fail',
             ]);
         }
                 return response()->json([
@@ -230,7 +231,7 @@ public function api_getGameByid(Request $request, $id){
         $publisher->game['desc']=$request->input('desc');
         $publisher->game['genre']=$request->input('genre');
         $publisher->game['site']=$request->input('site');
-          $result =  $publisher->updateGame($request->input('id'));
+          $result =  $publisher->updateGame($request->input('id'), $request->session()->get('id'));
           if ($result<1){
             return response()->json([
                 'message' =>'check again the form',
