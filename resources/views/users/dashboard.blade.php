@@ -12,16 +12,18 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            <a class="navbar-brand" href="#">Lara Game Man</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
-    
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                
+            </form>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="/profile">Profile</a>
+                        
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
@@ -40,13 +42,81 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid">
+                    <div class="container-fluid ">
                         <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                    
+                        <div class="breadcrumb mb-4 d-flex align-items-center">
+                            <div class="breadcrumb-item active w-25">Dashboard</div>
+                            <div class="d-flex justify-content-end w-75">
+                            <button class="btn btn-primary"  id="changeProfile">Change Profile</button>
+                            <button class="btn btn-primary mx-1" style="display: none;" id="save">save changes</button>
+                            
+                            <button class="btn btn-light btn-outline-dark mx-1" style="display: none;" id="cancel">cancel</button>
+                            </div>
+                        </div>
+                    <section id="show" style="display: block;">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-header">Publisher</div>
+                                    <div class="card-body" id="pub_name"></div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card bg-secondary text-white mb-4">
+                                    <div class="card-header">Site</div>
+                                    <div class="card-body" id="pub_site"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-header">Description</div>
+                                    <div class="card-body" id="pub_Description"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-header">Address</div>
+                                    <div class="card-body" id="pub_Address" ></div>
+                                </div>
+                            </div>
+                        </div>
+                        </section>
+                        <section id="input" style="display:none;">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-header">Publisher</div>
+                                    <input class="card-body" id="input_name" value=""/>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card bg-secondary text-white mb-4">
+                                    <div class="card-header">Site</div>
+                                    <input class="card-body" id="input_site" value="" placeholder="https://www.example.com"></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-header">Description</div>
+                                    <input class="card-body" id="input_Description" value="">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-header">Address</div>
+                                    <input class="card-body" id="input_Address" value="">
+                                </div>
+                            </div>
+                        </div>
+                        </section>
                         <div class="row w-100 d-flex justify-content-end">
+                        
                         <button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Post Game</button>
                         </div>
                         <div class="card mb-4">
