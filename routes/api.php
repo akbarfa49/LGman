@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Profile;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,6 +38,8 @@ Route::get('getGame/{id}',[User::class, 'api_getGameByid']);
 Route::put('update', [User::class, 'api_update']);
 Route::delete('delete', [User::class, 'api_delete']);
 
+Route::get('profile', [Profile::class, 'api_data']);
+Route::put('profile/update', [Profile::class, 'api_update']);
 
 
 //Route::get('view/{id}', [View::class, 'api_view']);
