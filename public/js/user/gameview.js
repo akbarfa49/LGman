@@ -19,11 +19,8 @@ $(document).ready(()=>{
 })
 var duar
 $("#save").click(()=>{
-    reg= /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
-    if(reg.test($("#addsite").val())){
-        alert("wrong format");
-        return
-    }
+    reg= /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+
     jsonData = {
         "name": $("#addgame").val(),
         "desc": $("#adddesc").val(),
@@ -34,7 +31,11 @@ $("#save").click(()=>{
     if (jsonData["name"] == ""){
         alert("name must be filled out");
         return
-    }
+    }else if(jsonData["site"]!=""){
+        if(reg.test($("#addsite").val())==false){
+            alert("wrong url format");
+            return
+        }}
     $.ajax({
         url: '/api/update',
         type: 'put',
@@ -42,11 +43,12 @@ $("#save").click(()=>{
         success: (data) => {
             if(data.status=='OK'){
                 location.reload()
-            }
+            }else{
             alert(data.message)
         }
+        }
     });
-})
+});
 $("#delete").click(()=>{
     jsonData = {
         "id": duar
@@ -56,14 +58,16 @@ $("#delete").click(()=>{
         return
     }
     $.ajax({
-        url: '/api/update',
+        url: '/api/delete',
         type: 'delete',
         data: jsonData,
         success: (data) => {
             if(data.status=='OK'){
-                location.reload()
+                window.location = "/dashboard"
+            }else{
+                alert(data.message)
             }
-            alert(data.message)
+            
         }
     });
 })
