@@ -68,7 +68,7 @@
       
           <div class="form-group">
             <label for="message-text" class="col-form-label">Site:</label>
-            <input type="text" class="form-control" id="addsite"></textarea>
+            <input type="text" class="form-control" id="addsite" placeholder="https://www.example.com"></textarea>
           </div>
       </form>
       </div>
