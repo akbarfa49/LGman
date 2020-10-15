@@ -12,7 +12,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Lara Game Man</a>
+            <a class="navbar-brand" href="/dashboard">Lara Game Man</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -65,7 +65,7 @@
                             <div class="col-xl-6 col-md-6">
                                 <div class="card bg-secondary text-white mb-4">
                                     <div class="card-header">Site</div>
-                                    <div class="card-body" id="pub_site"></div>
+                                    <a href="#" class="card-body" id="pub_site"></div>
                                 </div>
                             </div>
                         </div>
