@@ -37,10 +37,10 @@ class Profile extends Controller
     public function api_update(Request $request){
         $account = new Account();
         $validator = Validator::make($request->All(), [
-            'name'=>['string'],
-            'desc'=>['string'],
-            'url'=>['url'],
-            'address'=>['string']
+            'name'=>['string', 'nullable'],
+            'desc'=>['string', 'nullable'],
+            'url'=>['url', 'nullable'],
+            'address'=>['string', 'nullable']
         ]);
         if($validator->fails()){
             return response()->json([
@@ -56,7 +56,7 @@ class Profile extends Controller
         $result = $account->updateProfile($request->session()->get('id'));
         if($result!=1){
             return response()->json([
-                'message' =>'check again the form',
+                'message' =>'nothing changed',
                 'status' => 'OK',
             ]);
         }

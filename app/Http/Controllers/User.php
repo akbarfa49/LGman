@@ -73,6 +73,9 @@ public function api_getGameByid(Request $request, $id){
  
  public function api_login(Request $request)
  {
+    if($request->session()->has('username')){
+        return redirect('/dashboard');
+    }
     $validator = Validator::make($request->All(),[
         'email'=> ['required', 'email'],
         'pass'=> ['required', 'between:8,16', 'string'],

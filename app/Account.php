@@ -57,14 +57,14 @@ class Account {
 
    
   public function getProfile($id){
-    $result[0] = DB::select('select Publisher_Name, Publisher_Description, Website_URL, Address FROM profile where Publisher_id = ?', [$id]);
-    return $result;
+    $result = DB::select('select Publisher_Name, Publisher_Description, Website_URL, Address FROM profile where Publisher_id = ?', [$id]);
+    return $result[0];
    }
 
 
    //$id is publisher_id
    public function updateProfile($id){
-       $arrKey = [];
+       $arr = [];
         $arrv = [];
     foreach($this->profile as $key => $value){
         if($value!= null || $value!= ''){
@@ -72,9 +72,9 @@ class Account {
         array_push($arrv, $value);
     }
     }
-    $query = 'update profile set '.join(' = ?,', $arr).' where Publisher_id = ?';
+    $query = 'update profile set '.join(' = ?, ', $arr).' = ? where Publisher_id = ?';
     array_push($arrv, $id);
-    $result = DB::select($query, $arrv);
+    $result = DB::update($query, $arrv);
     return $result;
    }
 }
