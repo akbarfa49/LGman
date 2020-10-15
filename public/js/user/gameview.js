@@ -19,8 +19,7 @@ $(document).ready(()=>{
 })
 var duar
 $("#save").click(()=>{
-    reg= /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
-
+    reg= /^(https:\/\/www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
     jsonData = {
         "name": $("#addgame").val(),
         "desc": $("#adddesc").val(),
