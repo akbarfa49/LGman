@@ -11,17 +11,18 @@ class Account {
         $this->email = $emailwrp;
         $this->password = md5($pass);
     }
+    public $profile=[
+        'Publisher_Name'=>'',
+         'Publisher_Description'=>'',
+         'Website_URL'=>'',
+         'Address'=>''
+    ];
+
     public function login($table){
         if ($table != 'admin'){
-            /*$result = DB::table('users')
-            ->join('profile', function ($join){
-                $join-> on('users.id', '=', 'profile.id')
-                ->where('users.email', '=', $this->email)
-                ->where( 'users.password', '=', $this->password);
-            })->value('profile.Publisher_Id', 'profile.Publisher_Name');*/
+            
             $result =DB::select('select profile.Publisher_Name, profile.Publisher_Id from profile join users on Profile.id = users.id where users.email = ? AND users.password = ?',[ $this->email, $this->password] );
             return $result;
-            //$result = DB::select('select * from ? where email = ? and password = ?', $email, $password);
         }
         $result=DB::table('admin')
         ->where(function($query){
@@ -32,7 +33,7 @@ class Account {
         return $result;
     }
     public function create($username){
-        $status = DB::insert('insert into users values (?, ?, ?, ?, ?)', [null, $this->email, $this->password, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
+        $status = DB::insert('insert into users values (?, ?, ?, ?, ?)', [null, $this->email, $this->password, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')]);
         DB::insert('insert into profile (profile.id, profile.Publisher_Name) values ((SELECT id from users WHERE email= ?), ?)', [$this->email, $username]);
         return $status;
     }
@@ -53,6 +54,29 @@ class Account {
           ' );
           return $result;
     }
+
+   
+  public function getProfile($id){
+    $result[0] = DB::select('select Publisher_Name, Publisher_Description, Website_URL, Address FROM profile where Publisher_id = ?', [$id]);
+    return $result;
+   }
+
+
+   //$id is publisher_id
+   public function updateProfile($id){
+       $arrKey = [];
+        $arrv = [];
+    foreach($this->profile as $key => $value){
+        if($value!= null || $value!= ''){
+        array_push($arr, $key);
+        array_push($arrv, $value);
+    }
+    }
+    $query = 'update profile set '.join(' = ?,', $arr).' where Publisher_id = ?';
+    array_push($arrv, $id);
+    $result = DB::select($query, $arrv);
+    return $result;
+   }
 }
 
 ?>

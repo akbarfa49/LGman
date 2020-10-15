@@ -52,7 +52,7 @@ public function api_getGameByid(Request $request, $id){
         return redirect('/login');
     }
     $publisher = new Publisher();
-    $result = $publisher->getGameByid($id);
+    $result = $publisher->getGameByid($id, $request->session()->get('id'));
     $data = [];
     
     if (count($result)<1){
@@ -228,9 +228,9 @@ public function api_getGameByid(Request $request, $id){
             ]);};
             $publisher = new Publisher();
             $publisher->game['name']=$request->input('name');
-        $publisher->game['desc']=$request->input('desc');
-        $publisher->game['genre']=$request->input('genre');
-        $publisher->game['site']=$request->input('site');
+        $publisher->game['desc']=$request->input('desc')??'-';
+        $publisher->game['genre']=$request->input('genre')??'-';
+        $publisher->game['site']=$request->input('site')??'-';
           $result =  $publisher->updateGame($request->input('id'), $request->session()->get('id'));
           if ($result<1){
             return response()->json([
