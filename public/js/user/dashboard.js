@@ -53,6 +53,7 @@ $(document).ready(async()=>{
            $('#pub_name').text(profName);
            $('#pub_Description').text(profDesc);
             $('#pub_site').text(profUrl);
+            $('#pub_site').attr('href', profUrl);
             $('#pub_Address').text(profAddr);
             
         } 

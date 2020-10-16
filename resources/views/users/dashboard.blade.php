@@ -63,9 +63,9 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 col-md-6">
-                                <div class="card bg-secondary text-white mb-4">
-                                    <div class="card-header">Site</div>
-                                    <a href="#" class="card-body" id="pub_site"></div>
+                                <div class="card text-white mb-4">
+                                    <div class="card-header  bg-secondary">Site</div>
+                                    <div class="card-body border border-secondary" ><a href="#" class="text-dark" id="pub_site"></a></div>
                                 </div>
                             </div>
                         </div>

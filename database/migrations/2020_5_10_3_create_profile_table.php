@@ -20,7 +20,7 @@ class CreateProfileTable extends Migration
             $table->mediumText('Publisher_Description')->nullable();
             $table->string('Website_URL')->nullable();
             $table->increments('Publisher_id');
-            $table->string('Address', 20)->nullable();
+            $table->text('Address')->nullable();
         });
     }
 
